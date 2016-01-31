@@ -6,13 +6,11 @@
 /*   By: nromptea <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/30 15:37:35 by nromptea          #+#    #+#             */
-/*   Updated: 2016/01/30 21:30:01 by nromptea         ###   ########.fr       */
+/*   Updated: 2016/01/31 20:25:51 by nromptea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include "../libft/libft.h"
+
+//#include "game_2048.h"
 
 int		move_down(int ***tab, int *check)
 {
@@ -39,7 +37,7 @@ int		move_down(int ***tab, int *check)
 	return (0);
 }
 
-int		add_down(int ***tab)
+int		add_down(int ***tab, int *check)
 {
 	int		i;
 	int		j;
@@ -54,6 +52,7 @@ int		add_down(int ***tab)
 			{
 				(*tab)[i + 1][j] = (*tab)[i + 1][j] + (*tab)[i][j];
 				(*tab)[i][j] = 0;
+				(*check)++;
 				return (1);
 			}
 			i--;
@@ -63,16 +62,16 @@ int		add_down(int ***tab)
 	return (0);
 }
 
-int		**down(int **tab)
+int		down(int ***tab)
 {
 	int		i;
 
 	i = 0;
-	while (move_down(&tab, &i) == 1)
+	while (move_down(tab, &i) == 1)
 		;
-	while (add_down(&tab) == 1)
+	while (add_down(tab, &i) == 1)
 		;
-	while (move_down(&tab, &i) == 1)
+	while (move_down(tab, &i) == 1)
 		;
-	return (tab);
+	return (i);
 }

@@ -6,11 +6,13 @@
 #    By: mgras <mgras@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/07 18:34:51 by mgras             #+#    #+#              #
-#    Updated: 2016/01/29 20:33:58 by nromptea         ###   ########.fr        #
+#    Updated: 2016/01/31 21:45:09 by nromptea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC_NAME = 	
+SRC_NAME = ft_initiate_tab.c ft_move_down.c ft_move_left.c ft_move_up.c\
+		   ft_move_right.c ft_core.c ft_check.c ft_choice.c ft_grid_maker.c\
+		   ft_loop.c ft_menu.c
 OBJ_NAME = $(SRC_NAME:.c=.o)
 LIB_NAME = libft
 
@@ -25,7 +27,7 @@ OBJ      = $(addprefix $(OBJ_PATH), $(OBJ_NAME))
 INC      = $(addprefix -I, $(INC_PATH))
 LIB      = $(addprefix -L, $(LIB_PATH))
 
-NAME     = fillit
+NAME     = game_2048
 CC       = gcc
 
 CFLAGS = -Wall -Wextra -Werror
@@ -39,7 +41,7 @@ libft :
 	make -C $(LIB_PATH)
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) $(LIB) $(INC) $(LDFLAGS) -o $(NAME)
+	$(CC) $(CFLAGS) -lncurses $(OBJ) $(LIB) $(INC) $(LDFLAGS) -o $(NAME)
 
 $(OBJ_PATH)%.o : $(SRC_PATH)%.c
 	@mkdir -p $(OBJ_PATH)
